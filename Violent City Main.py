@@ -1,6 +1,7 @@
 import pygame
 import random
 import sys
+import os
 from pygame.locals import *
 pygame.init()
 
@@ -86,32 +87,37 @@ def score_display(msg, color):
 def end_display(msg, color):
     screen_text = font_L.render(msg, True, color)
     gameDisplay.blit(screen_text, [0, 100])
+#Directory
+main_dir = os.getcwd()
 
 #Some Images
-gun = pygame.image.load(r'C:\Users\mtanious\mu_code\images\gun.png') #Loads Images from directory
-crosshair = pygame.image.load(r'C:\Users\mtanious\mu_code\images\crosshair.png')
-Start_Button = pygame.image.load(r'C:\users\mtanious\mu_code\images\start_button.png')
-bullet = pygame.image.load(r'C:\users\mtanious\mu_code\images\bullet.png')
-logo = pygame.image.load(r'C:\users\mtanious\mu_code\images\logo.png')
-reload = pygame.image.load(r'C:\users\mtanious\mu_code\images\reload.png')
-enemy_1 = pygame.image.load(r'C:\users\mtanious\mu_code\images\enemy_1.png')
-enemy_2 = pygame.image.load(r'C:\users\mtanious\mu_code\images\enemy_2.png')
-enemy_3 = pygame.image.load(r'C:\users\mtanious\mu_code\images\enemy_3.png')
-background = pygame.image.load(r'C:\users\mtanious\mu_code\images\back_01.jpeg')
-status_bar = pygame.image.load(r'C:\users\mtanious\mu_code\images\status_bar.png')
-replay = pygame.image.load(r'C:\users\mtanious\mu_code\images\replay.png')
-oh_snap = pygame.image.load(r'C:\users\mtanious\mu_code\images\oh_snap.png')
+gun = pygame.image.load(os.path.join(main_dir, 'images\\gun.png')) #Loads Images from directory
+crosshair = pygame.image.load(os.path.join(main_dir,'images\\crosshair.png'))
+Start_Button = pygame.image.load(os.path.join(main_dir,'images\\start_button.png'))
+bullet = pygame.image.load(os.path.join(main_dir,'images\\bullet.png'))
+logo = pygame.image.load(os.path.join(main_dir,'images\\logo.png'))
+reload = pygame.image.load(os.path.join(main_dir,'images\\reload.png'))
+enemy_1 = pygame.image.load(os.path.join(main_dir,'images\\enemy_1.png'))
+enemy_2 = pygame.image.load(os.path.join(main_dir,'images\\enemy_2.png'))
+enemy_3 = pygame.image.load(os.path.join(main_dir,'images\\enemy_3.png'))
+background = pygame.image.load(os.path.join(main_dir,'images\\back_01.jpeg'))
+status_bar = pygame.image.load(os.path.join(main_dir,'images\\status_bar.png'))
+replay = pygame.image.load(os.path.join(main_dir,'images\\replay.png'))
+oh_snap = pygame.image.load(os.path.join(main_dir,'images\\oh_snap.png'))
+
+
+
 
 #Sounds and Music
-main_music = pygame.mixer.music.load(r'C:\Users\mtanious\mu_code\music\music.mp3')
+main_music = pygame.mixer.music.load(os.path.join(main_dir, 'music\\music.mp3'))
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(1)
-ah = pygame.mixer.Sound(r'C:\Users\mtanious\mu_code\sounds\ah.wav')
-ah_2 = pygame.mixer.Sound(r'C:\Users\mtanious\mu_code\sounds\ah2.wav')
-ah_3 = pygame.mixer.Sound(r'C:\Users\mtanious\mu_code\sounds\ah3.wav')
-game_over = pygame.mixer.Sound(r'C:\Users\mtanious\mu_code\sounds\game_over.wav')
-reload_sound = pygame.mixer.Sound(r'C:\Users\mtanious\mu_code\sounds\reload.wav')
-shot_sound = pygame.mixer.Sound(r'C:\Users\mtanious\mu_code\sounds\shot.wav')
+ah = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\ah.wav'))
+ah_2 = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\ah2.wav'))
+ah_3 = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\ah3.wav'))
+game_over = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\game_over.wav'))
+reload_sound = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\reload.wav'))
+shot_sound = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\shot.wav'))
 #Start of Code
 Game_On = False
 
@@ -271,22 +277,22 @@ def Game_Start():
         if enemy_alive == False:
             return
         if enemy_direction == 1:
-            enemy_position_x = enemy_position_x + level * 0.5 + 1
+            enemy_position_x = enemy_position_x + level * 0.5 + 2
             if enemy_position_x >= 1566:
                 missed = missed + 1
                 enemy_alive = False
         elif enemy_direction == 2:
-            enemy_position_y = enemy_position_y + level * 0.5 + 1
+            enemy_position_y = enemy_position_y + level * 0.5 + 2
             if enemy_position_y >= 768:
                 missed = missed + 1
                 enemy_alive = False
         elif enemy_direction == 3:
-            enemy_position_x = enemy_position_x - level * 0.5 - 1
+            enemy_position_x = enemy_position_x - level * 0.5 - 2
             if enemy_position_x <= -200:
                 missed = missed + 1
                 enemy_alive = False
         elif enemy_direction == 4:
-            enemy_position_y = enemy_position_y - level * 0.5 - 1
+            enemy_position_y = enemy_position_y - level * 0.5 - 2
             if enemy_position_y <= -200:
                 missed = missed + 1
                 enemy_alive = False
@@ -333,9 +339,10 @@ def Game_Start():
         if time_seconds == 60:
             time_seconds = 0
             time_minutes = time_minutes + 1
-        if missed == 1:
+        if missed == 10:
             game_over.play()
             Game_On = False
+
 
         #status bar titles
         gameDisplay.blit(status_bar, (5, 5))
@@ -363,8 +370,8 @@ def Game_Start():
         pygame.display.update()
 
         key = pygame.key.get_pressed()
-        if key[pygame.K_b]:
-            missed = missed + 1
+        #if key[pygame.K_b]:
+        #    missed = missed + 1
         if key[pygame.K_ESCAPE]:
             pygame.quit()
             sys.exit()
