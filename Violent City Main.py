@@ -2,7 +2,9 @@ import pygame
 import random
 import sys
 import os
+
 from pygame.locals import *
+
 pygame.init()
 
 #define mouse
@@ -16,7 +18,6 @@ enemy_direction = 0
 enemy_position_x = 0
 enemy_position_y = 0
 enemy_alive = False
-
 
 # Default screen width / height
 #WIDTH = 1366 #1366
@@ -44,7 +45,6 @@ font_S = pygame.font.Font("IBMPlexSans-Regular.ttf", 17) #Imported Font
 display_width, display_height = 1366, 768   # sets width and height
 gameDisplay = pygame.display.set_mode((display_width,display_height), pygame.FULLSCREEN) #Sets display to height and width
 pygame.display.set_caption("Violent City") # gives title ontop of gameDisplay
-
 
 #Titles and Text
 def Mouse_x_View(msg, color):       #this defines functions used to draw a title
@@ -105,9 +105,6 @@ status_bar = pygame.image.load(os.path.join(main_dir,'images\\status_bar.png'))
 replay = pygame.image.load(os.path.join(main_dir,'images\\replay.png'))
 oh_snap = pygame.image.load(os.path.join(main_dir,'images\\oh_snap.png'))
 
-
-
-
 #Sounds and Music
 main_music = pygame.mixer.music.load(os.path.join(main_dir, 'music\\music.mp3'))
 pygame.mixer.music.play(-1)
@@ -118,6 +115,7 @@ ah_3 = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\ah3.wav'))
 game_over = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\game_over.wav'))
 reload_sound = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\reload.wav'))
 shot_sound = pygame.mixer.Sound(os.path.join(main_dir, 'sounds\\shot.wav'))
+
 #Start of Code
 Game_On = False
 
@@ -136,7 +134,6 @@ def MainMenu():
         if key[pygame.K_ESCAPE]:
             pygame.quit()
             sys.exit()
-
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:   # stops game from crashing by making sure it quits if it crashes
@@ -277,22 +274,22 @@ def Game_Start():
         if enemy_alive == False:
             return
         if enemy_direction == 1:
-            enemy_position_x = enemy_position_x + level * 0.5 + 2
+            enemy_position_x = enemy_position_x + level * 0.5 + 3
             if enemy_position_x >= 1566:
                 missed = missed + 1
                 enemy_alive = False
         elif enemy_direction == 2:
-            enemy_position_y = enemy_position_y + level * 0.5 + 2
+            enemy_position_y = enemy_position_y + level * 0.5 + 3
             if enemy_position_y >= 768:
                 missed = missed + 1
                 enemy_alive = False
         elif enemy_direction == 3:
-            enemy_position_x = enemy_position_x - level * 0.5 - 2
+            enemy_position_x = enemy_position_x - level * 0.5 - 3
             if enemy_position_x <= -200:
                 missed = missed + 1
                 enemy_alive = False
         elif enemy_direction == 4:
-            enemy_position_y = enemy_position_y - level * 0.5 - 2
+            enemy_position_y = enemy_position_y - level * 0.5 - 3
             if enemy_position_y <= -200:
                 missed = missed + 1
                 enemy_alive = False
