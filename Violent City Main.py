@@ -7,6 +7,9 @@ from pygame.locals import *
 
 pygame.init()
 
+#Directory
+main_dir = os.getcwd()
+
 #define mouse
 Mouse_x = 0
 Mouse_y = 0
@@ -36,9 +39,9 @@ blue = (0, 0, 255)
 brown = (150, 75, 0)
 gray = (112.95, 112.95, 112.95)
 yellow = (255, 255, 0)
-font = pygame.font.Font("IBMPlexSans-Regular.ttf", 40) #Imported Font
-font_L = pygame.font.Font("IBMPlexSans-Regular.ttf", 100) #Imported Font
-font_S = pygame.font.Font("IBMPlexSans-Regular.ttf", 17) #Imported Font
+font = pygame.font.Font(os.path.join(main_dir, 'fonts\\IBMPlexSans-Regular.ttf'), 40) #Imported Font
+font_L = pygame.font.Font(os.path.join(main_dir, 'fonts\\IBMPlexSans-Regular.ttf'), 100) #Imported Font
+font_S = pygame.font.Font(os.path.join(main_dir, 'fonts\\IBMPlexSans-Regular.ttf'), 17) #Imported Font
 
 
 #Display settings
@@ -87,8 +90,7 @@ def score_display(msg, color):
 def end_display(msg, color):
     screen_text = font_L.render(msg, True, color)
     gameDisplay.blit(screen_text, [0, 100])
-#Directory
-main_dir = os.getcwd()
+
 
 #Some Images
 gun = pygame.image.load(os.path.join(main_dir, 'images\\gun.png')) #Loads Images from directory
