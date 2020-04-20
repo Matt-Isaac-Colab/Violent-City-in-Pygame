@@ -1,4 +1,6 @@
 # Violent-City-in-Pygame
-Bug fixed: Directory now in same place as game
+Due to reasons unkown only in pyhton is it possible to find the files path.
 
-You may have to click on the font and press install
+Becuase of this you have to mannually chnage main_dir on line 11 to were your game is. 
+
+Sorry for the inconvince.
