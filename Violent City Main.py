@@ -8,7 +8,7 @@ from pygame.locals import *
 pygame.init()
 
 #Directory
-main_dir = os.getcwd()
+main_dir = 'C:\\Users\\mtanious\\Downloads\\Violent-City-in-Pygame-master\\Violent-City-in-Pygame-master'
 
 #define mouse
 Mouse_x = 0
